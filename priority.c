@@ -48,7 +48,7 @@ int buildHeap(NODE *forest,int size) {
 
 NODE pop(NODE* tree, int* current) {
 	if (*current < 1) {
-		NODE null = {' ',-1};
+		NODE null = {'z',-1};
 		return null;
 	}
 	NODE temp = *(tree + 1);
@@ -83,9 +83,9 @@ void pushCorrector(NODE* tree, int index,int size) {
 	}
 }
 
-NODE  buildTree(NODE* tree, int size, int* current) {
+NODE buildTree(NODE* tree, int size, int* current) {
 	if (*current == 1) {
-		return *tree;
+		return *(tree+1);
 	}
 	else {
 		NODE* first = (NODE*)calloc(1, sizeof(NODE));
@@ -96,11 +96,12 @@ NODE  buildTree(NODE* tree, int size, int* current) {
 		*second = pop(tree, current);
 		printf("the  character out of queue %c\n", second->s);
 		third.weight = first->weight + second->weight;
+		printf("and the weight of third element will be %d\n", third.weight);
 		third.left = second;
+		printf("third is correctly connected with %c\n", third.left->s);
 		third.right = first;
+		printf("third is correctly connected with %c\n", third.right->s);
 		int i = push(tree, third, current, size);
-		if (i > 0) {
-			return buildTree(tree, size, current);
-		}
+		return buildTree(tree,size,current);
 	}
 }

@@ -2,7 +2,7 @@
 #include "Header.h"
 #include"dev.h"
 int histogram[MAX];
-
+NODE TREE;
 int main()
 {
 	FILE* fp = NULL;
@@ -15,8 +15,11 @@ int main()
 	int current = buildHeap(forest,diffchar);
 	printforest(forest, diffchar);
 	int* pcurrent = &current;
-	NODE* tree = calloc(1, sizeof(NODE));
-	*tree = buildTree(forest, diffchar, pcurrent);
-	printf("break point");
+	//NODE* tree = (NODE *)malloc(sizeof(NODE));
+
+	TREE = buildTree(forest, diffchar, pcurrent);
+	printf("lol");
+	free(forest);
+	printf("lol2");
 	return 0;
 }
